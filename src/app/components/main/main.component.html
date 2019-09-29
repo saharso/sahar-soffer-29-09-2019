@@ -1,0 +1,17 @@
+<hwt-location-search
+    (onAutoCompleteQuery)="getAutoCompleteResults( $event )"
+    [defaultLocation]="currentLocation"
+></hwt-location-search>
+
+<hwt-current-weather
+    *ngIf="currentWeather"
+    [currentWeather]="currentWeather"
+    [currentLocation]="currentLocation"
+    [keepFahrenheit]="keepFahrenheit"
+    (onAddToFavorites)="addToFavorites( $event )"
+></hwt-current-weather>
+
+<hwt-forecast
+    [foreCast]="foreCast"
+    [keepFahrenheit]="keepFahrenheit"
+></hwt-forecast>

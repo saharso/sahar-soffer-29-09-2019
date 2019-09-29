@@ -1,0 +1,170 @@
+.h-full {
+    height: 100%;
+}
+.h-null {
+    height: 0;
+}
+.w-sixth {
+    width: 16.6666%;
+}
+.w-fifth {
+    width: 20%;
+}
+.w-quarter {
+    width: 25%;
+}
+.w-third {
+    width: 33.3333%;
+}
+.w-half {
+    width: 50%;
+}
+.w-full {
+    width: 100%;
+}
+.w-double {
+    width: 200%;
+}
+
+.w-200 {
+    width: running(200);
+}
+.w-250 {
+    width: running(250);
+}
+
+.l-flex {
+    @extend %flex;
+}
+.l-flex-wrap {
+    @extend %flex;
+    flex-wrap: wrap;
+}
+.l-unshrink {
+    flex-shrink: 0;
+}
+
+.l-align-center {
+    @extend %l-align-center;
+}
+.l-align-x {
+    @extend %flex;
+    justify-content: center;
+}
+.l-align-y, %l-align-y {
+    @extend %flex;
+    align-items: center;
+}
+.l-align-top {
+    @extend %flex;
+    align-items: flex-start;
+}
+.l-align-bottom {
+    @extend %flex;
+    align-items: flex-end;
+}
+.l-align-end {
+    @extend %flex;
+    justify-content: flex-end;
+}
+.l-align-spaceBetween {
+    @extend %flex;
+    justify-content: space-between;
+}
+.l-cell-spread {
+    @extend %l-cell-spread;
+}
+.l-cell-spread-x {
+    @extend %l-cell-spread;
+    width: 0;
+}
+.l-cell-spread-y {
+    @extend %l-cell-spread;
+    height: 0;
+}
+.l-flex-column {
+    @extend %flex;
+    flex-direction: column;
+}
+ 
+.l-ta-center {
+    text-align: center;
+}
+.is-rtl .l-ta-end {
+    text-align: left;
+}
+.is-ltr .l-ta-end {
+    text-align: right;
+}
+.is-rtl .l-ta-start {
+    text-align: right;
+}
+.is-ltr .l-ta-start {
+    text-align: left;
+}
+.l-spread {
+    @extend %spread;
+}
+.l-flip {
+    @extend %flip;
+}
+.l-layer-up {
+    position: relative;
+    z-index: 2;
+}
+.l-block {
+    display: block;
+}
+.l-ib {
+    display: inline-block;
+}
+.l-ibm {
+    display: inline-block;
+    vertical-align: middle;
+}
+.l-ibt {
+    display: inline-block;
+    vertical-align: top;
+}
+.l-ltr {
+    direction: ltr;
+}
+.l-table {
+    display: table;
+    border-collapse: collapse;
+}
+.l-tr {
+    display: table-row;
+}
+.l-tdm {
+    display: table-cell;
+    vertical-align: middle;
+}
+.l-tdt {
+    display: table-cell;
+    vertical-align: top;
+}
+.l-tdb {
+    display: table-cell;
+    vertical-align: bottom;
+}
+table.is-layout-fixed , .is-layout-fixed table {
+    table-layout: fixed !important;
+}
+
+.l-pos-relative {
+    position: relative;
+}
+.l-break-word {
+    word-wrap: break-word;
+}
+.l-nowrap {
+    white-space: nowrap;
+}
+.l-overflow-hidden {
+    overflow: hidden;
+}
+.l-overflow-auto {
+    overflow-y: auto;
+    overflow-x: hidden;
+}

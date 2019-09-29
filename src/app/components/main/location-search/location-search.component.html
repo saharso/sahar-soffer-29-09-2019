@@ -1,0 +1,17 @@
+<div class="c-autoComplete-wrap">
+  <p-autoComplete 
+    [(ngModel)]="autoCompleteQuery"
+    (completeMethod)="onAutoCompleteSearch( $event )"
+    [placeholder]="'Search location'"
+    [suggestions]="cityList"
+    [field]="'name'"
+    (onSelect)="onUserChoice( $event )"
+  >
+    <ng-template let-result pTemplate="item">
+      {{ result.name }}
+    </ng-template>
+  </p-autoComplete>
+  <i class="fas fa-search c-grey-d c-autoComplete-icon"></i>
+</div>
+<i *ngIf="requestResult === 'loading'" class="fas fa-circle-notch"></i>
+

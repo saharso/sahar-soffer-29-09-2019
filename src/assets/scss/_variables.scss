@@ -1,0 +1,40 @@
+//colors
+$c1: #7744a2;
+$c-btn: #005AA1;
+$c-grey-d : #293F3B;
+$c-grey-l: #00C8F8;
+
+//font weights
+$fw-thin: 100;
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+$fw-extraBold: 800;
+$fw-black: 900;
+//measurements
+
+$pad : 30px;
+$pad-med : 15px;
+$pad-small : 10px;
+$input-height: 35px;
+$rad : 6px;
+
+// sdiebar reveal
+$sidebar-width: 50px;
+$sidebar-nav-width: 204px;
+
+$fs-default : 14px;
+$fs-btn: 16px;
+$fs-large: 18px;
+
+
+$shadow-focus: 0px 0px 15px 0px rgba(0,0,0,0.2);
+$shadow-focus-c1: 0px 0px 20px 0px rgba($c1,0.2);
+
+$mq-tablet: 900px;
+$mq-mobile: 760px;
+
+@function running($fs) {
+	@return em($fs-default,$fs);
+}

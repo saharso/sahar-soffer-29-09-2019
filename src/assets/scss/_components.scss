@@ -1,0 +1,106 @@
+
+// NAVBAR
+.c-navbar {
+    position: relative;
+    z-index: 999;
+}
+.c-navbar-link {
+    @extend %t-xPad--med;
+    @extend %t-yPad--small;
+    @extend %l-align-y;
+    @extend %norm-a;
+    @extend %t-focus;
+    white-space: nowrap;
+    border-right: 1px solid rgba(#000,0.2);
+    background-color: $c-grey-d;
+    transition: background-color 200ms ease-out;
+    &:last-child  {
+        border-right-color: transparent;
+    }
+    &:hover {
+        color: $c-grey-l;
+    }
+    &.is-active {
+        background-color: $c-btn;
+        &:hover {
+            color: inherit;
+            background-color: lighten( $c-btn, 10 )
+        }
+    }
+}
+.c-settingsPanel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+.c-navbar-mobileMenuBtn {
+    display: none;
+}
+@media ( max-width: $mq-mobile ){
+    .c-navbar-mobileMenuBtn {
+        display: block;
+    }
+    $menu-width: calc( 100% - #{running($pad)});
+    .c-mobileMenu {
+        display: block;
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: $menu-width;
+        transition: right 400ms ease-out;
+        &.is-open {
+            right: 0;
+        }
+    }
+}
+// CHOOSE LOCATION
+.c-autoComplete-wrap {
+    max-width: 100%;
+    width: running( 420 );
+    height: running( $pad );
+    border: 1px solid $c-grey-d;
+    border-radius: 5000px;
+    position: relative;
+    margin: running( $pad-med ) auto;
+    .ui-autocomplete {
+        display: inline;
+        padding: 0;
+        input {
+            @extend %t-focus;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: transparent;
+            border: none;
+            z-index: 1;
+            padding: running(2) running($pad-small);
+            padding-left: running( $pad + $pad-small );
+            border-radius: 5000px;
+            color: $c-grey-d;
+            @include placeholder( $c-grey-d );
+            &:focus {
+                @include placeholder( transparent );
+            }
+        }
+    }
+}
+.c-autoComplete-icon {
+    @extend %l-align-center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: running( $pad );
+    text-align: center;
+}
+// CURRENT WEATHER
+.c-currentWeather-icon {
+    width: running( 180 );
+}
+.c-currentWeather-weatherText {
+    color: $c-grey-l;
+}
+// FORECAST
+.c-forecast-item-icon {
+    width: running( 70 );
+}

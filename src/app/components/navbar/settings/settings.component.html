@@ -1,0 +1,20 @@
+<ul class="norm-ul c-settingsPanel">
+  <li>
+    <button 
+      [ngClass]="{'is-active': currentDegUnig === 'celsius' }"
+      (click)="toggleDegUnit( 'celsius' )"
+      class="c-navbar-link w-full"
+    >
+      Celsius
+    </button>
+  </li>
+  <li>
+    <button 
+    [ngClass]="{'is-active': currentDegUnig === 'fahrenheit' }"
+      (click)="toggleDegUnit( 'fahrenheit' )"
+      class="c-navbar-link w-full"
+    >
+      Fahrenheit
+    </button>
+  </li>
+</ul>

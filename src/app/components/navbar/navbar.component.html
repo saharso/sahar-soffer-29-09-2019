@@ -1,0 +1,44 @@
+<header class="l-flex bg-grey-d c-navbar">
+
+  <div class="l-cell-spread-x t-xPad--med t-yPad--small l-flex-y">
+    <h1 class="norm-title fs-20">
+      Herolo Weather Task
+    </h1>
+  </div>
+
+  <nav class="l-flex">
+    <div #mobileMenu class="l-flex bg-grey-d c-mobileMenu" [ngClass]="{ 'is-open': toggleMobileMenu }">
+      <a class="c-navbar-link" routerLinkActive="is-active" routerLink="/main">
+        <i class="fas fa-home"></i>
+        &nbsp;
+        Home
+      </a>
+      <a class="c-navbar-link" routerLinkActive="is-active" routerLink="/favorites">
+        <i class="fas fa-heart"></i>
+        &nbsp;
+        Favorites
+      </a>
+    </div>
+    <button
+      [ngClass]="{ 'is-active': toggleSettings }"
+      (click)="toggleSettings = ! toggleSettings"
+      class="c-navbar-link"
+    >
+      <i class="fas fa-cog"></i>
+    </button>
+    <button
+      [ngClass]="{ 'is-active': toggleMobileMenu }"
+      (click)="toggleMobileMenu = ! toggleMobileMenu"
+      class="c-navbar-link c-navbar-mobileMenuBtn"
+    >
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+
+    <hwt-settings
+      (onSelect)="toggleSettings = false"
+      *ngIf="toggleSettings"
+    ></hwt-settings>
+
+  </nav>
+
+</header>

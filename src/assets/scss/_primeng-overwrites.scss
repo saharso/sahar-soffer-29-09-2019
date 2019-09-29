@@ -1,0 +1,17 @@
+body .ui-widget {
+    font: inherit;
+}
+.ui-toast .ui-toast-close-icon{ 
+    top: .25em;
+    left: .25em;
+    right:  auto;
+    width: 1em;
+    display: inline-block;
+    &:after {
+        @extend %f-awsome;
+        content: "\f00d"
+    }
+}
+.ui-autocomplete {
+    position: static;
+}

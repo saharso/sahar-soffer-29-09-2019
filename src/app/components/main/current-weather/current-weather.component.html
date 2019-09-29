@@ -1,0 +1,41 @@
+<div class="t-row--med c-currentWeather">
+  <div class="l-align-y l-flex-wrap">
+      
+    <hwt-icon 
+      class="l-block c-currentWeather-icon"
+      [icon]="currentWeather.WeatherIcon"
+      [alt]="currentWeather.WeatherText"
+    ></hwt-icon>
+    
+    <div class="l-cell-spread-x l-align-y l-nowrap l-flex-wrap t-xPad--med c-currentWeather-degrees">
+
+      <div>
+        <div class="fs-30 currentWeather-locationName">
+          {{ currentLocation.name }}
+        </div>
+        <div class="fs-20 c-currentWeather-degValue">
+          {{ currentWeather.Temperature.Imperial.Value | celsius: keepFahrenheit }}
+          &#xb0;
+          {{ keepFahrenheit ? 'F': 'C' }}
+        </div>
+      </div>
+
+      <div class="t-space--med"></div>
+
+      <h2 class="norm-title fs-70 c-currentWeather-weatherText">
+        {{ currentWeather.WeatherText }}
+      </h2>
+      
+    </div>
+
+    <button 
+      class="t-button"
+      (click)="addToFavorites()"
+    >
+      <i class="fas fa-heart"></i>
+      Add to favorites
+    </button>
+  </div>
+
+
+</div>

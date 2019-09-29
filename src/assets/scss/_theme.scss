@@ -1,0 +1,136 @@
+.bg-grey-l {
+    background-color: $c-grey-l;
+    color: #fff;
+}
+.bg-grey-d {
+    background-color: $c-grey-d;
+    color: #fff;
+}
+.bg-white {
+    background: #fff;    
+}
+
+.c-grey-l {
+    color: $c-grey-l;
+}
+.c-grey-d {
+    color: $c-grey-d;
+}
+.fs-20 {
+    font-size: running(20);
+}
+.fs-30 {
+    font-size: running(30);
+}
+.fs-40 {
+    font-size: running(40);
+}
+.fs-50 {
+    font-size: running(50);
+}
+.fs-70 {
+    font-size: running(70);
+}
+
+.fw-thin {
+    font-weight: $fw-thin;
+}
+.fw-regular {
+    font-weight: $fw-regular;
+}
+.fw-medium {
+    font-weight: $fw-medium; 
+}
+.fw-bold {
+    font-weight: $fw-bold;
+}
+.fw-extraBold {
+    font-weight: $fw-extraBold;
+}
+.fw-black {
+    font-weight: $fw-black;
+}
+.t-row {
+    margin-bottom: running( $pad );
+}
+.t-row--med {
+    margin-bottom: running( $pad-med );
+}
+.t-row--small {
+    margin-bottom: running( $pad-small );
+}
+.t-space--med {
+    min-width: running( $pad-med );
+    min-height: running( $pad-med );
+}
+.t-space--small {
+    min-width: running( $pad-small );
+    min-height: running( $pad-small );
+}
+
+.t-xPad--med , %t-xPad--med {
+    padding-right: running( $pad-med );
+    padding-left: running( $pad-med );
+}
+.t-yPad--small, %t-yPad--small {
+    padding-top: running( $pad-small );
+    padding-bottom: running( $pad-small )
+}
+.t-focus, %t-focus {
+    outline: none;
+    &:focus {
+        box-shadow: 0px 0px 5px 0px rgba($c-grey-d, 0.65);
+    }
+}
+.t-button {
+    @extend %t-focus;
+    background-color: $c-btn;
+    color: #fff;
+    border-radius: 5000px;
+    padding: running(4) running(14);
+    &:hover {
+        background-color: darken( $c-btn, 10 ); 
+    }
+}
+.t-grid {
+    display: grid;
+    grid-gap: running( $pad-med ) running( $pad-med );
+}
+.t-grid--5 {
+    grid-template-columns: repeat(5, 1fr);
+    @media ( max-width: $mq-tablet ){
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media ( max-width: $mq-mobile ){
+        grid-template-columns: auto;
+    }
+}
+.t-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+    @media ( max-width: $mq-mobile ){
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.t-rad {
+    border-radius: running( $rad );
+}
+.t-radial {
+    @extend %l-align-center;
+    border-radius: 50%;
+    padding: running($pad-small);
+}
+
+.t-linkBox {
+    border-radius: running($rad);
+    overflow: hidden;
+    border-top: running(6) solid $c-btn;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0, 0.2);
+    padding: running($pad-small);
+    &-icon {
+        margin: 0 auto running($pad-small);
+        width: running( 100 );
+        height: running( 100 );
+        display: block;
+        box-shadow: $shadow-focus;
+    }
+}

@@ -1,0 +1,26 @@
+<article>
+  <h1 class="norm-title fs-40">
+    Favorite weathers
+  </h1>
+  <div class="t-row--med"></div>
+  <nav class="norm-ul t-grid t-grid--4">
+
+    <a 
+      *ngFor="let item of favoriteList"
+      routerLink="/main/{{item.key}}/{{item.name}}"
+      class="l-flex l-flex-column t-linkBox"
+    >
+      <hwt-icon class="t-radial t-linkBox-icon" [icon]="item.WeatherIcon" [alt]="item.WeatherText"></hwt-icon>
+      
+      <h2 class="norm-title l-cell-spread fs-20 l-ta-center">
+        {{ item.name }}
+      </h2>
+
+      <section class="l-align-y t-linkBox-temperature">
+        <div class="">
+
+        </div>
+      </section>
+    </a>
+  </nav> 
+</article>
