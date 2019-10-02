@@ -1,0 +1,22 @@
+<a *ngIf="link" class="l-block t-nav-control w-full" routerLinkActive="is-active" [routerLink]="link">
+  <ng-container *ngTemplateOutlet="navItemContent"></ng-container>
+</a>
+
+<button *ngIf="! link" class="t-nav-control w-full" [ngClass]="{ 'is-active': isActive }" (click)="onNavItemClick( $event )">
+  <ng-container *ngTemplateOutlet="navItemContent"></ng-container>
+</button>
+  
+
+<ng-template #navItemContent>
+  <span class="l-align-y">
+    <span class="t-space l-align-center t-navItem-icon">
+      <i *ngIf="icon" class="fas fa-{{ icon }}"></i>
+      <span *ngIf=" ! icon" aria-hidden="true" class="t-navItem-labelFirstLatter">
+        {{ labelFirstLatter }}
+      </span>
+    </span>
+    <span class="t-navItem-label">
+      {{ label }}
+    </span>
+  </span>
+</ng-template>

@@ -1,0 +1,18 @@
+.c-topBar {
+    .t-navItemSet,
+    .t-nav-control {
+        height: 100%;
+    }
+}
+.c-topBar-mainMenu-control {
+    .t-nav-control {
+        margin-bottom: 0;
+        border-bottom: none;
+        &:before {
+            display: none;
+        }
+        &.is-active {
+            color: inherit;
+        }
+    }
+}

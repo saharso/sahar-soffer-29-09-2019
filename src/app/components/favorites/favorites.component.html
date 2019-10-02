@@ -1,26 +1,43 @@
 <article>
-  <h1 class="norm-title fs-40">
-    Favorite weathers
+  <h1 class="t-mainTitle">
+    Your Favorite weathers
   </h1>
   <div class="t-row--med"></div>
-  <nav class="norm-ul t-grid t-grid--4">
+  <nav class="norm-ul t-grid t-grid--3 c-favorites">
 
     <a 
       *ngFor="let item of favoriteList"
       routerLink="/main/{{item.key}}/{{item.name}}"
-      class="l-flex l-flex-column t-linkBox"
+      class="l-block t-xPad--med t-yPad--med bg-grey-l t-shadow t-borderBottom"
     >
-      <hwt-icon class="t-radial t-linkBox-icon" [icon]="item.WeatherIcon" [alt]="item.WeatherText"></hwt-icon>
-      
-      <h2 class="norm-title l-cell-spread fs-20 l-ta-center">
-        {{ item.name }}
-      </h2>
 
-      <section class="l-align-y t-linkBox-temperature">
-        <div class="">
+      <div class="l-pos-relative l-align-bottom">
 
+        <hwt-icon class="t-radial bg-white t-linkBox-icon" [icon]="item.WeatherIcon" [alt]="item.WeatherText"></hwt-icon>
+    
+        <button 
+          (click)="removeFromFavorites( $event, item )"
+          class="c-red l-pos-abs-topRight c-favorites-remove"
+          pTooltip="Remover from favorites"
+        >
+          <i class="fas fa-heart-broken"></i>
+        </button>
+        <div class="t-space--small"></div>
+        <div class="l-cell-spread">
+          <h2 class="norm-title l-cell-spread fs-20">
+            {{ item.name }}
+          </h2>
+  
+          <hwt-deg-range
+            class="fs-20"
+            [minValue]="item.Temperature.Imperial.Value"
+          ></hwt-deg-range>
         </div>
-      </section>
+          
+      </div>
+
+
     </a>
   </nav> 
 </article>
+

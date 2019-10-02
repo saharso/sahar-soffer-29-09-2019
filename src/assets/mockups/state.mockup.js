@@ -1,6 +1,6 @@
-{
+export const fakeData = {
     "iconUrl": "https://www.accuweather.com/images/weathericons/",
-    "degreeUnits": "celsius",
+    "ui_degreeUnits": "celsius",
     "chosenLocation": {
        "key": "215854",
        "name": "Tel Aviv"

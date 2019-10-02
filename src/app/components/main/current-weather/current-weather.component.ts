@@ -15,6 +15,7 @@ export class CurrentWeatherComponent implements OnInit {
   @Input() keepFahrenheit: boolean
   @Input() currentLocation: LocationItem;
   @Output() onAddToFavorites = new EventEmitter<CurrentWeather>();
+  @Output() onRemoveFromFavorites = new EventEmitter<CurrentWeather>();
 
   
   iconUrl: string;
@@ -31,6 +32,9 @@ export class CurrentWeatherComponent implements OnInit {
 
   addToFavorites(){
     this.onAddToFavorites.emit( this.currentWeather );
+  }
+  removeFromFavorites(){
+    this.onRemoveFromFavorites.emit( this.currentWeather );
   }
 
 }

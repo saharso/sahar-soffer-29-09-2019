@@ -17,16 +17,8 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.currentDegUnig = this.ngRedux.getState().degreeUnits;
+    this.currentDegUnig = this.ngRedux.getState().ui_degreeUnits;
   }
 
-  toggleDegUnit( degUnit: DegUnit ){
-    this.currentDegUnig = degUnit;
-    this.ngRedux.dispatch({
-      type: actionList.SET_DEGREE_UNIT,
-      data: degUnit,
-    })
-    this.onSelect.emit();
-  }
 
 }

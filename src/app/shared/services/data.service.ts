@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, catchError, take } from "rxjs/operators";
 import { LocationItem } from '../models/location.model';
 import { NgRedux } from '@angular-redux/store';
 import { AppState, actionList } from '../redux/store';
 import { ServerRequest } from '../models/server-request.model';
 import { CurrentWeather } from '../models/current-weather.model';
+import { fakeData } from '../../../assets/mockups/state.mockup.js';
 
 
 @Injectable({
@@ -22,7 +23,9 @@ export class DataService {
   ) { }
   private apiKey(){
     //return 'jhA7A51oWfnBgX2r0Q8Fs9vA2X1MWv1C';
-    return 'KbYovIoDjUtB9Mzpe3JLKCdreACHNGYE';
+    //return 'KbYovIoDjUtB9Mzpe3JLKCdreACHNGYE';
+    //return 'QArD9PBP0efjxevWZVbDe5LJzAfVrev3';
+    return '';
   }
 
   getAutoCompleteData( query: string ): Observable<any> {
@@ -64,7 +67,7 @@ export class DataService {
   }
 
   getCurrentWeather( locationKey: string ){
-    if ( ! locationKey ) return;
+    //if ( ! locationKey ) return;
     const requestResult: ServerRequest = {
       id: actionList.GET_CURRENT_WEATHER,
       requestResult: 'loading'
@@ -75,7 +78,8 @@ export class DataService {
     const params = new HttpParams()
       .set('apikey', this.apiKey() );
 
-    return this.http.get( url ,{ params } ).pipe(
+    //return this.http.get( url ,{ params } ).pipe(
+    return of( fakeData.currentWeather ).pipe(
       take( 1 ),
       map( ( data ) => { return this.extractCurrentWeather( data, requestResult ) } ),
       catchError( (err) => { return this.handleError( err, 'the current weather', requestResult ) } )
@@ -83,18 +87,22 @@ export class DataService {
 
   }
 
-  private extractCurrentWeather( data, requestResult: ServerRequest ){
+  private extractCurrentWeather( data, requestResult: ServerRequest ): CurrentWeather {
+    //const _data = data[0];
+    const _data = data;
+    _data.isFavorite = this.ngRedux.getState().favoriteList.find( e => e.key === data.key );
+
     this.ngRedux.dispatch({
       type: actionList.GET_CURRENT_WEATHER,
-      data: data[ 0 ],
+      data: _data,
     });
     requestResult.requestResult = 'success';
     this.dispatchServerRequest( requestResult );
-    return data[ 0 ];
+    return _data;
   }
 
   getForeCast( locationKey: string ){
-    if ( ! locationKey ) return;
+    //if ( ! locationKey ) return;
     const requestResult: ServerRequest = {
       id: actionList.GET_FORECAST,
       requestResult: 'loading'
@@ -104,7 +112,8 @@ export class DataService {
     const params = new HttpParams()
       .set('apikey', this.apiKey() );
 
-    return this.http.get( url ,{ params } ).pipe(
+    //return this.http.get( url ,{ params } ).pipe(
+    return of( fakeData.foreCast ).pipe(
       take( 1 ),
       map( ( data ) => { return this.extractForeCast( data, requestResult ) } ),
       catchError( (err) => { return this.handleError( err, 'the forecast', requestResult ) } )
@@ -153,13 +162,5 @@ export class DataService {
     return undefined;
   }
 
-  getFavorites(): CurrentWeather[] {
-    const favorites: CurrentWeather[] = JSON.parse( localStorage.getItem( 'favorites' ) );
-    this.ngRedux.dispatch({
-      type: actionList.GET_FAVORITES ,
-      data: favorites,
-    });
-    return favorites;
-  }
 }
 

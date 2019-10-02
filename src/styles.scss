@@ -9,7 +9,12 @@
 @import './assets/scss/norm';
 @import './assets/scss/layout';
 @import './assets/scss/theme';
-@import './assets/scss/components';
+@import './assets/scss/components/layout.scss';
+@import './assets/scss/components/top-bar.scss';
+@import './assets/scss/components/navbar.scss';
+@import './assets/scss/components/location-search.scss';
+@import './assets/scss/components/current-weather.scss';
+@import './assets/scss/components/favorites.scss';
 @import './assets/scss/primeng-overwrites';
 
 body,html,app-root,app-layout {
@@ -21,7 +26,7 @@ body,html,app-root,app-layout {
 body {
     font: 100%/1 sans-serif;
     font-family: 'Heebo', sans-serif;
-    font-weight: $fw-regular;
+    font-weight: $fw-light;
     font-size: $fs-default;
 }
 @media (max-width: $mq-mobile) and (orientation: portrait ){
@@ -29,3 +34,4 @@ body {
         font-size: 4vw;
     }
 }
+

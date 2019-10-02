@@ -1,0 +1,12 @@
+<div [ngClass]="{ 'is-sideViewOpen': isSideViewOpen }" class="h-full l-flex-column l-overflow-hidden">
+    <hwt-top-bar></hwt-top-bar>
+    <div class="l-cell-spread-y l-flex">
+        <hwt-navbar></hwt-navbar>
+        <main #mainContainer class="l-overflow-auto l-cell-spread-x c-main">
+            <div class="t-xPad--med t-yPad--small bg-white c-mainFrame">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+    </div>
+</div>
+<p-toast position="top-right"></p-toast>

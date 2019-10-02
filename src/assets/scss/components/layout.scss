@@ -1,0 +1,46 @@
+.c-mainContainer {
+    color: $c-grey-d;
+    background-color: #fff;
+    display: block;
+    height: 100%;
+    &.is-darkMode, &.is-darkMode .bg-white {
+        background-color: $c-grey-d;
+        color: #fff;
+    }
+    &.is-darkMode {
+        .c-main,
+        .c-navbar-routeList .t-nav-control.is-active {
+            background-color: darken($c-grey-d,10);
+        }
+        .bg-grey-l {
+            background-color: darken($c-grey-d,10);
+            color: #fff;
+        }
+        .c-c1 {
+            color: #fff;
+        }
+        .t-nav-control {
+            color: #fff;
+        }
+        .t-borderBottom {
+            border-color: #fff;
+        }
+    }
+}
+.c-main {
+    position: relative;
+    z-index: 2;
+    background: $c-grey-l;
+    transition: transform 400ms ease-out;
+    padding: running($pad-small) running($pad-med);
+}
+.c-mainFrame {
+    padding: running($pad);
+    min-height: 100%;
+    border-radius: running( $rad );
+}
+.is-sideViewOpen {
+    .c-main {
+        transform: translateX( running( $navbar-width - $navbar-cubic ) );
+    }
+}

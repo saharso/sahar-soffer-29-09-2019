@@ -1,44 +1,56 @@
-<header class="l-flex bg-grey-d c-navbar">
+<nav class="c-navbar">
+  <div class="c-navbar-width">
+    <hwt-nav-item-set class="t-borderBottom c-navbar-routeList">
 
-  <div class="l-cell-spread-x t-xPad--med t-yPad--small l-flex-y">
-    <h1 class="norm-title fs-20">
-      Herolo Weather Task
-    </h1>
+      <hwt-nav-item
+        [link]="'/main'"
+        [icon]="'home'"
+        [label]="'Home'"
+      ></hwt-nav-item>
+
+      <hwt-nav-item
+        [link]="'/favorites'"
+        [icon]="'heart'"
+        [label]="'Favorites'"
+      ></hwt-nav-item>
+
+    </hwt-nav-item-set>
+
+    <hwt-nav-item-set>
+
+      <hwt-nav-item
+        [label]="'Celsius'"
+        (onClick)="toggleDegUnit('celsius')"
+      ></hwt-nav-item>
+
+      <hwt-nav-item
+        [label]="'Fahrenheit'"
+        (onClick)="toggleDegUnit('fahrenheit')"
+      ></hwt-nav-item>
+
+    </hwt-nav-item-set>
+    <hwt-nav-item-set>
+
+      <hwt-nav-item
+        [label]="'Light mode'"
+        [icon]="'sun'"
+        (onClick)="toggleDarkmode( false )"
+      ></hwt-nav-item>
+
+      <hwt-nav-item
+        [label]="'Dark mode'"
+        [icon]="'moon'"
+        (onClick)="toggleDarkmode( true )"
+      ></hwt-nav-item>
+
+    </hwt-nav-item-set>
+      
+    <div #mobileMenu class="bg-grey-d c-mobileMenu" [ngClass]="{ 'is-open': toggleSettings }">
+      <hwt-settings
+        (onSelect)="toggleSettings = false"
+        *ngIf="toggleSettings"
+      ></hwt-settings>
+    </div>
   </div>
 
-  <nav class="l-flex">
-    <div #mobileMenu class="l-flex bg-grey-d c-mobileMenu" [ngClass]="{ 'is-open': toggleMobileMenu }">
-      <a class="c-navbar-link" routerLinkActive="is-active" routerLink="/main">
-        <i class="fas fa-home"></i>
-        &nbsp;
-        Home
-      </a>
-      <a class="c-navbar-link" routerLinkActive="is-active" routerLink="/favorites">
-        <i class="fas fa-heart"></i>
-        &nbsp;
-        Favorites
-      </a>
-    </div>
-    <button
-      [ngClass]="{ 'is-active': toggleSettings }"
-      (click)="toggleSettings = ! toggleSettings"
-      class="c-navbar-link"
-    >
-      <i class="fas fa-cog"></i>
-    </button>
-    <button
-      [ngClass]="{ 'is-active': toggleMobileMenu }"
-      (click)="toggleMobileMenu = ! toggleMobileMenu"
-      class="c-navbar-link c-navbar-mobileMenuBtn"
-    >
-      <i class="fas fa-ellipsis-v"></i>
-    </button>
-
-    <hwt-settings
-      (onSelect)="toggleSettings = false"
-      *ngIf="toggleSettings"
-    ></hwt-settings>
-
-  </nav>
-
-</header>
+</nav>

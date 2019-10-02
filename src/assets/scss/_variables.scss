@@ -1,8 +1,11 @@
 //colors
 $c1: #7744a2;
-$c-btn: #005AA1;
+//$c-btn: #005AA1;
+$c-btn: $c1;
+$c-dark: #4C4452;
 $c-grey-d : #293F3B;
-$c-grey-l: #00C8F8;
+$c-grey-l: #E8EAF6;
+$c-red: #F7617E;
 
 //font weights
 $fw-thin: 100;
@@ -14,15 +17,15 @@ $fw-extraBold: 800;
 $fw-black: 900;
 //measurements
 
-$pad : 30px;
+$pad : 36px;
 $pad-med : 15px;
 $pad-small : 10px;
 $input-height: 35px;
 $rad : 6px;
+$navbar-cubic: 60px;
+$navbar-width: 220px;
 
 // sdiebar reveal
-$sidebar-width: 50px;
-$sidebar-nav-width: 204px;
 
 $fs-default : 14px;
 $fs-btn: 16px;

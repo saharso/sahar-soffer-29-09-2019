@@ -1,13 +1,17 @@
 .bg-grey-l {
     background-color: $c-grey-l;
-    color: #fff;
+    color: $c1;
 }
 .bg-grey-d {
     background-color: $c-grey-d;
     color: #fff;
 }
 .bg-white {
-    background: #fff;    
+    background-color: #fff;    
+}
+.bg-red {
+    background-color: $c-red;
+    color: #fff;
 }
 
 .c-grey-l {
@@ -15,6 +19,12 @@
 }
 .c-grey-d {
     color: $c-grey-d;
+}
+.c-red {
+    color: $c-red;
+}
+.c-c1 {
+    color: $c1;
 }
 .fs-20 {
     font-size: running(20);
@@ -24,6 +34,9 @@
 }
 .fs-40 {
     font-size: running(40);
+    @media(max-width: $mq-mobile ){
+        font-size: running( 22 );
+    }
 }
 .fs-50 {
     font-size: running(50);
@@ -50,14 +63,9 @@
 .fw-black {
     font-weight: $fw-black;
 }
-.t-row {
-    margin-bottom: running( $pad );
-}
-.t-row--med {
-    margin-bottom: running( $pad-med );
-}
-.t-row--small {
-    margin-bottom: running( $pad-small );
+.t-space {
+    min-width: running( $pad );
+    min-height: running( $pad );
 }
 .t-space--med {
     min-width: running( $pad-med );
@@ -72,9 +80,13 @@
     padding-right: running( $pad-med );
     padding-left: running( $pad-med );
 }
+.t-yPad--med, %t-yPad--med {
+    padding-top: running( $pad-med );
+    padding-bottom: running( $pad-med );
+}
 .t-yPad--small, %t-yPad--small {
     padding-top: running( $pad-small );
-    padding-bottom: running( $pad-small )
+    padding-bottom: running( $pad-small );
 }
 .t-focus, %t-focus {
     outline: none;
@@ -82,6 +94,10 @@
         box-shadow: 0px 0px 5px 0px rgba($c-grey-d, 0.65);
     }
 }
+%t-shadow, .t-shadow {
+    box-shadow: 0px 6px 8px 0px rgba( 0, 0, 0, 0.09 );
+}
+
 .t-button {
     @extend %t-focus;
     background-color: $c-btn;
@@ -92,12 +108,18 @@
         background-color: darken( $c-btn, 10 ); 
     }
 }
+.t-borderBottom {
+    border-bottom: 4px solid $c1;
+}
 .t-grid {
     display: grid;
     grid-gap: running( $pad-med ) running( $pad-med );
 }
 .t-grid--5 {
     grid-template-columns: repeat(5, 1fr);
+    @media ( max-width: 1130px ){
+        grid-template-columns: repeat(4, 1fr);
+    }
     @media ( max-width: $mq-tablet ){
         grid-template-columns: repeat(3, 1fr);
     }
@@ -111,6 +133,12 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+.t-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+    @media ( max-width: $mq-mobile ){
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 .t-rad {
     border-radius: running( $rad );
 }
@@ -119,18 +147,57 @@
     border-radius: 50%;
     padding: running($pad-small);
 }
-
 .t-linkBox {
+    @extend  %t-shadow;
     border-radius: running($rad);
     overflow: hidden;
     border-top: running(6) solid $c-btn;
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0, 0.2);
     padding: running($pad-small);
     &-icon {
-        margin: 0 auto running($pad-small);
         width: running( 100 );
         height: running( 100 );
         display: block;
         box-shadow: $shadow-focus;
     }
+}
+.t-nav-control {
+    @extend %norm-a;
+    @extend %t-focus;
+    position: relative;
+    white-space: nowrap;
+    transition: background-color 200ms ease-out;
+    border-bottom: 1px solid $c-grey-l;
+    margin-bottom: -1px;
+    color: inherit;
+    color: $c1;
+    &:last-child  {
+        border-right-color: transparent;
+    }
+    &:hover {
+        background-color: $c-grey-l;
+    }
+    &.is-active {
+        color: $c-red;
+    }
+    .t-space {
+        min-width: running($navbar-cubic);
+        min-height: running($navbar-cubic);
+    }
+}
+
+
+.t-mainTitle {
+    font-size: running(38);
+    font-weight: $fw-light;
+    margin: 0;
+}
+
+.t-row {
+    margin-bottom: running( $pad );
+}
+.t-row--med {
+    margin-bottom: running( $pad-med );
+}
+.t-row--small {
+    margin-bottom: running( $pad-small );
 }

@@ -1,0 +1,8 @@
+@media ( max-width: $mq-mobile ){
+    .c-favorites {
+        grid-template-columns: auto;
+        > .t-linkBox {
+            display: contents;
+        }
+    }
+}

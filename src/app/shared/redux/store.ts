@@ -5,6 +5,7 @@ import { LocationItem } from '../models/location.model';
 import { CurrentWeather } from '../models/current-weather.model';
 import { ForeCast } from '../models/forecast.model';
 import { ServerRequest } from '../models/server-request.model';
+import { NavItemComponent } from 'src/app/components/_shared/nav-item/nav-item.component';
 
 const updateState = ( state: AppState, action: ActionMethod, update: any ) => {
     const stateUpdate = Object.assign({},
@@ -26,10 +27,14 @@ export const actionList = Object.freeze( new Actions() );
 
 export class AppState {
     _currentAction?: string;
+    _containers?: any = {};
+    ui_selectedNavItem?: NavItemComponent;
+    ui_isSidebarOpen?: boolean;
+    ui_degreeUnits?: DegUnit = 'celsius';
+    ui_isDarkMode?: boolean;
     serverRequest?: ServerRequest = new ServerRequest();
     locationSearch?: LocationItem[];
     iconUrl?: string = 'https://www.accuweather.com/images/weathericons/';
-    degreeUnits?: DegUnit = 'celsius';
     chosenLocation?: LocationItem = {
         key: '215854',
         name: 'Tel Aviv'
@@ -52,9 +57,24 @@ export const rootReducer = ( state: AppState, action: ActionMethod ) => {
                 serverRequest: action.data,
             };
         return updateState( state, action, update );
-        case actionList.SET_DEGREE_UNIT :
+        case actionList.UI__SELECT_NAV_ITEM :
             update = {
-                degreeUnits: action.data,
+                ui_selectedNavItem: action.data,
+            };
+        return updateState( state, action, update );
+        case actionList.UI__TOGGLE_SIDEBAR_VIEW :
+            update = {
+                ui_isSidebarOpen: action.data,
+            };
+        return updateState( state, action, update );
+        case actionList.UI__SET_DEGREE_UNIT :
+            update = {
+                ui_degreeUnits: action.data,
+            };
+        return updateState( state, action, update );
+        case actionList.UI__TOGGLE_DARK_MODE :
+            update = {
+                ui_isDarkMode: action.data,
             };
         return updateState( state, action, update );
         case actionList.SEARCH_LOCATION :
@@ -77,7 +97,7 @@ export const rootReducer = ( state: AppState, action: ActionMethod ) => {
                 foreCast: action.data,
             };
         return updateState( state, action, update );
-        case actionList.ADD_TO_FAVORITES :
+        case actionList.UPDATE_FAVORITES :
             update = {
                 favoriteAdded: action.data,
             };

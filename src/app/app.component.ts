@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { AppState, actionList } from './shared/redux/store';
 
 @Component({
   selector: 'app-root',

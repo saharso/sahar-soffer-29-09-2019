@@ -3,6 +3,7 @@ import { NgRedux } from '@angular-redux/store';
 import { AppState, actionList } from 'src/app/shared/redux/store';
 import { CurrentWeather } from 'src/app/shared/models/current-weather.model';
 import { DataService } from 'src/app/shared/services/data.service';
+import { FavoritesService } from 'src/app/shared/services/favorites.service';
 
 @Component({
   selector: 'hwt-favorites',
@@ -11,25 +12,27 @@ import { DataService } from 'src/app/shared/services/data.service';
 })
 export class FavoritesComponent implements OnInit {
 
-  favoriteList: CurrentWeather[] = [];
+  //favoriteList: CurrentWeather[] = [];
 
   constructor(
     private ngRedux: NgRedux<AppState>,
-    private dataService: DataService,
+    private favoritesServcice: FavoritesService,
   ) { }
+
+  get favoriteList(): CurrentWeather[] {
+    return this.ngRedux.getState().favoriteList;
+  }
   
   ngOnInit() {
-    this.favoriteList = this.dataService.getFavorites();
+    this.favoritesServcice.getFavorites();
+  }
 
-    this.ngRedux.subscribe(()=>{
-      const appState = this.ngRedux.getState();
-      switch( appState._currentAction ){
-        case actionList.GET_FORECAST :
-          this.favoriteList = this.ngRedux.getState().favoriteList;
-          console.log( this.favoriteList );
-        break;
-      }
-    })
+  removeFromFavorites( $event: MouseEvent, item: CurrentWeather ){
+    $event.stopPropagation();
+    $event.preventDefault();
+    
+    this.favoritesServcice.removeFromFavorites( item );
+    
   }
 
 }

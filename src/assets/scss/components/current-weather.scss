@@ -1,0 +1,28 @@
+.c-currentWeather-icon {
+    width: running( 180 );
+}
+
+.c-currentWeather-temperature {
+    font-size: 15vw;
+    letter-spacing: -0.06em;
+    line-height: .8;
+    font-weight: $fw-thin;
+    > small {
+        font-size: 60%;
+    }
+}
+.c-currentWeather-addToFavorites {
+    background: $c-red;
+    color: #fff;
+    border-radius: 5000px;
+    padding: running(14) running(12);
+}
+// forecast
+.c-forecast-list {
+    display: grid;
+    border-bottom: 1px  solid $c1;
+    grid-template-columns: repeat(5, 1fr);
+}
+.c-forecast-item-icon {
+    width: running( 70 );
+}

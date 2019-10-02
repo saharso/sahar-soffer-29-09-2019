@@ -1,32 +1,23 @@
-<ul class="norm-ul t-grid t-grid--5 t-boxes">
+
+<ul class="norm-ul c-forecast-list">
 
   <li 
     *ngFor="let item of foreCastList"
-    class="t-boxes-item t-rad t-xPad--med t-yPad--small bg-grey-l c-forecast-item"
+    class="l-flex-column l-align-center t-xPad--med t-yPad--small c-forecast-item"
   >
+    <h3 class="norm-title fs-20">
+      {{ item.Date | date : 'E' }}
+    </h3>
 
-    <div class="l-align-y">
-      <hwt-icon class="l-block t-radial bg-white c-forecast-item-icon" [icon]="item.Day.Icon" [alt]="item.Day.IconPhrase"></hwt-icon>
-      <div class="t-space--small"></div>
+    <hwt-icon class="l-block t-radial bg-white c-forecast-item-icon" [icon]="item.Day.Icon" [alt]="item.Day.IconPhrase"></hwt-icon>
       <div class="c-forecast-item-text">
-        <div class="l-align-bottom">
-          <h3 class="norm-title fs-20">
-            {{ item.Date | date : 'E' }}
-          </h3>
-        </div>
         <div>
           {{ item.Day.IconPhrase }}
         </div>
-        <div class="l-align-y">
-            <i class="fas fa-thermometer-three-quarters fs-20"></i>
-            &nbsp;
-            <div class="l-cell-spread-x l-nowrap">
-              {{ item.Temperature.Minimum.Value | celsius : keepFahrenheit }}
-              -
-              {{ item.Temperature.Maximum.Value | celsius : keepFahrenheit }}
-            </div>
-          </div>      
+        <hwt-deg-range
+          [minValue]="item.Temperature.Minimum.Value"
+          [maxValue]="item.Temperature.Maximum.Value"
+        ></hwt-deg-range>
       </div>
-    </div>
   </li>
 </ul>
