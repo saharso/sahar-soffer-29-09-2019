@@ -9,4 +9,6 @@ import { AppState, actionList } from './shared/redux/store';
 })
 export class AppComponent {
   title = 'herolo-test';
+  
 }
+

@@ -26,9 +26,7 @@ export class CurrentWeatherComponent implements OnInit {
     this.iconUrl = this.ngRedux.getState().iconUrl;
   }
 
-  ngOnInit() {
-    console.log( this.currentWeather.WeatherIcon );
-  }
+  ngOnInit() {}
 
   addToFavorites(){
     this.onAddToFavorites.emit( this.currentWeather );

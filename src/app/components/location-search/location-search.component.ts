@@ -4,6 +4,7 @@ import { LocationItem } from 'src/app/shared/models/location.model';
 import { ServerRequest, RequestResult } from 'src/app/shared/models/server-request.model';
 import { NgRedux } from '@angular-redux/store';
 import { AppState, actionList } from 'src/app/shared/redux/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hwt-location-search',
@@ -12,7 +13,7 @@ import { AppState, actionList } from 'src/app/shared/redux/store';
 })
 export class LocationSearchComponent implements OnInit {
   
-  @Input() defaultLocation: LocationItem;
+  defaultLocation: LocationItem;
   @Output() onAutoCompleteQuery = new EventEmitter<LocationItem>();
   autoCompleteQuery: LocationItem;  
   cityList: LocationItem[];
@@ -21,24 +22,21 @@ export class LocationSearchComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private ngRedux: NgRedux<AppState>,
-  ) { }
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    this.autoCompleteQuery = this.defaultLocation;
     this.ngRedux.subscribe(()=>{
-
-    })
+      const appState = this.ngRedux.getState();
+      if( appState._currentAction === actionList.CHOOSE_LOCATION ){
+        this.defaultLocation = this.ngRedux.getState().chosenLocation;
+      }
+    });
   }
 
-  ngAfterContentInit(){
-    console.log( this.autoCompleteQuery );
-
-  }
   onUserChoice( userChoice: LocationItem ){
-    console.log( userChoice )
-    if( userChoice instanceof LocationItem ){
-      this.onAutoCompleteQuery.emit( userChoice );
-    }
+    this.ngRedux.dispatch( { type: actionList.CHOOSE_LOCATION, data: userChoice } );
+    this.router.navigate( [ 'main' ] );
   }
 
 

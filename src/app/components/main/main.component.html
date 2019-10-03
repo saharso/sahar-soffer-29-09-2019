@@ -1,14 +1,35 @@
 
-<hwt-current-weather
-    *ngIf="currentWeather"
-    [currentWeather]="currentWeather"
-    [currentLocation]="currentLocation"
-    [keepFahrenheit]="keepFahrenheit"
-    (onAddToFavorites)="addToFavorites( $event )"
-    (onRemoveFromFavorites)="removeFromFavorites( $event )"
-></hwt-current-weather>
+<ng-container *ngIf="loading == 'loading'">
+    <div style="height:75vh" class="l-align-center">
+        <i class="fs-40 c-red fas fa-spinner fa-spin"></i>
+        &nbsp;
+        Loading...
+    </div>
+</ng-container>
 
-<hwt-forecast
-    [foreCast]="foreCast"
-    [keepFahrenheit]="keepFahrenheit"
-></hwt-forecast>
+<ng-container *ngIf="loading === 'error'">
+    <h1 class="c-red t-mainTitle">
+        <i class="fas fa-sad-tear"></i>
+        Sorry... We were unable to get the weather.
+    </h1>
+    <div class="t-row--med"></div>
+    <p class="fs-20">
+        Please try again later.
+    </p>
+</ng-container>
+
+<ng-container *ngIf="loading === 'success'">
+    <hwt-current-weather
+        *ngIf="currentWeather"
+        [currentWeather]="currentWeather"
+        [currentLocation]="currentLocation"
+        [keepFahrenheit]="keepFahrenheit"
+        (onAddToFavorites)="addToFavorites( $event )"
+        (onRemoveFromFavorites)="removeFromFavorites( $event )"
+    ></hwt-current-weather>
+
+    <hwt-forecast
+        [foreCast]="foreCast"
+        [keepFahrenheit]="keepFahrenheit"
+    ></hwt-forecast>
+</ng-container>

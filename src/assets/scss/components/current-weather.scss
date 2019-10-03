@@ -2,27 +2,90 @@
     width: running( 180 );
 }
 
+.c-currentWeather-data {
+    font-size: 1vw;
+}
+
 .c-currentWeather-temperature {
-    font-size: 15vw;
+    $fs: 330;
+    font-size: running( $fs );
     letter-spacing: -0.06em;
-    line-height: .8;
+    line-height: .7;
     font-weight: $fw-thin;
-    > small {
-        font-size: 60%;
+    min-width: em($fs,425);
+    &-unitType {
+        font-size: em($fs,100);
+        width: em(100,95);
+        letter-spacing: -0.06em;
     }
 }
+.c-currentWeather-weatherText {
+    font-size: running(70);
+    font-weight: $fw-thin;
+    letter-spacing: 0.08em;
+    color: $c-grey-d;
+    transform: translateX(em(70,-95));
+}
 .c-currentWeather-addToFavorites {
-    background: $c-red;
+    background-color: $c-red;
     color: #fff;
     border-radius: 5000px;
-    padding: running(14) running(12);
+    padding: running(12) running(12);
+    &:hover {
+        background-color: darken( $c-red, 10 );
+    }
 }
 // forecast
 .c-forecast-list {
     display: grid;
-    border-bottom: 1px  solid $c1;
+    border-bottom: 1px  solid $c1; 
     grid-template-columns: repeat(5, 1fr);
 }
 .c-forecast-item-icon {
     width: running( 70 );
 }
+
+@media ( max-width: $mq-mobile ){
+    .c-currentWeather {
+        flex-direction: column;
+    }
+    .c-currentWeather-data {
+        font-size: 1.8vw;
+    }
+    .c-currentWeather-addToFavorites {
+        order: -1;
+        margin-bottom: running($pad-small);
+    }
+    .c-currentWeather-temperature {
+        line-height: .9;
+    }
+    .c-currentWeather-degrees {
+        display: contents;
+    }
+    .c-currentWeather-weatherText {
+        transform: none;
+    }
+
+    .c-forecast-list {
+        margin: 0 running(-$pad-small);
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+        .c-forecast-item {
+            width: 33.3333%;
+        }
+
+        .c-currentWeather-weatherText {
+            width: 100%;
+            text-align: center;
+            white-space: normal;
+        }
+
+    .c-forecast-item-icon {
+        padding: 0.01em;
+        width: running(20);
+    }
+}
+

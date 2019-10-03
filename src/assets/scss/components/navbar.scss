@@ -23,32 +23,7 @@
     }
 }
 @media ( max-width: $mq-mobile ){
-    .c-header {
-        display: block;
-    }
-    .c-header-title { 
-        width: auto;
-    }
-    .c-header-mobileMenuBtn {
-        display: block;
-    }
-    .c-header-link {
-        flex-grow: 1;
+    .c-navbar {
         width: 0;
-    }
-    $menu-width: calc( 100% - #{running($pad)});
-    .c-mobileMenu {
-        display: block;
-        position: absolute;
-        top: 100%;
-        right: -100%;
-        width: $menu-width;
-        transition: right 400ms ease-out;
-        &.is-open {
-            right: 0;
-        }
-    }
-    .c-settingsPanel {
-        position: static;
     }
 }

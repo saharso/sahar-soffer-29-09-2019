@@ -1,50 +1,51 @@
-<h1 class="l-align-bottom t-row--small t-mainTitle">
+<h1 class="l-align-top t-row--small t-mainTitle">
+  
   <i *ngIf="currentWeather.isFavorite" class="c-red fas fa-heart">&nbsp;</i>
   
   <span>
     Current weather in {{ currentLocation.name }}
   </span>
+  
 </h1>
 
-<div class="t-row c-currentWeather">
-  <div class="l-align-top l-flex-wrap">
+<div class="t-row l-align-top c-currentWeather">
+  <div class="l-align-bottom l-flex-wrap l-cell-spread c-currentWeather-data">
     
-    <hwt-icon 
-      class="l-block c-currentWeather-icon"
-      [icon]="currentWeather.WeatherIcon"
-      [alt]="currentWeather.WeatherText"
-    ></hwt-icon>
-    
-    <div class="l-cell-spread-x l-nowrap t-xPad--med c-currentWeather-degrees">
-
-      <div class="c-red l-align-bottom c-currentWeather-temperature">
-        {{ currentWeather.Temperature.Imperial.Value | celsius: keepFahrenheit }}&deg;<small>{{ keepFahrenheit ? 'F': 'C' }}</small>
-      </div>
-      <h2 class="norm-title fs-70 c-c1 c-currentWeather-weatherText">
-        {{ currentWeather.WeatherText }}
-      </h2>
-      
+    <div class="c-red l-align-top c-currentWeather-temperature">
+      {{ currentWeather.Temperature.Imperial.Value | celsius: keepFahrenheit }}
+      <span class="c-currentWeather-temperature-unitType">&deg;{{ keepFahrenheit ? 'F': 'C' }}</span>
     </div>
 
-    <button
-      *ngIf=" ! currentWeather.isFavorite" 
-      class="c-currentWeather-addToFavorites"
-      (click)="addToFavorites()"
-    >
-      <i class="fas fa-heart"></i>
-      Add to favorites
-    </button>
-
-    <button
-      *ngIf=" currentWeather.isFavorite" 
-      class="c-currentWeather-addToFavorites"
-      (click)="removeFromFavorites()"
-    >
-      <i class="fas fa-heart-broken"></i>
-      Remove to favorites
-    </button>
+    <div class="l-cell-spread-x l-nowrap t-xPad--med c-currentWeather-degrees">
+      <hwt-icon 
+        class="l-block c-currentWeather-icon"
+        [icon]="currentWeather.WeatherIcon"
+        [alt]="currentWeather.WeatherText"
+      ></hwt-icon>
   
-  </div>
+      <h2 class="norm-title c-c1 c-currentWeather-weatherText">
+        {{ currentWeather.WeatherText }}
+      </h2>
+    </div>
 
+  </div>
+  
+  <button
+    *ngIf=" ! currentWeather.isFavorite" 
+    class="c-currentWeather-addToFavorites"
+    (click)="addToFavorites()"
+  >
+    <i class="fas fa-heart"></i>
+    Add to favorites
+  </button>
+
+  <button
+    *ngIf=" currentWeather.isFavorite" 
+    class="c-currentWeather-addToFavorites"
+    (click)="removeFromFavorites()"
+  >
+    <i class="fas fa-heart-broken"></i>
+    Remove to favorites
+  </button>
 
 </div>

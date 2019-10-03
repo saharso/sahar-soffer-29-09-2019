@@ -16,3 +16,32 @@
         }
     }
 }
+@media ( max-width: $mq-mobile ){
+    .c-topBar-content {
+        padding-left: 0;
+        padding-right: running($pad-small);
+        transform: translateX(-100%);
+        transition: transform 400ms ease-out;
+        .c-autoComplete-wrap {
+            margin: 0;
+        }
+        hwt-location-search {
+            order: -1;
+        }
+        .c-header-title, hwt-location-search {
+            min-width: 100%;
+            margin-right: running($pad-small);
+        }
+    }
+    .is-searhOpen .c-topBar-content {
+        transform: translateX(0);
+    }
+
+    .c-topBar-mainMenu-control .t-nav-control {
+        .t-navItem-icon {
+            min-width: 0;
+            min-height: 0;
+            padding: running( $pad-small );
+        }
+    }
+}

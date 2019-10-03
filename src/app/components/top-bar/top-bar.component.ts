@@ -1,8 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, HostBinding } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState, actionList } from 'src/app/shared/redux/store';
 import { LocationItem } from 'src/app/shared/models/location.model';
-import { CurrentWeather } from 'src/app/shared/models/current-weather.model';
 
 @Component({
   selector: 'hwt-top-bar',
@@ -12,66 +11,28 @@ import { CurrentWeather } from 'src/app/shared/models/current-weather.model';
 export class TopBarComponent implements OnInit {
 
   currentLocation: LocationItem;
-  currentWeather: CurrentWeather;
+  _isSideOpen: boolean;
+  get isSideOpen(): boolean {
+    const isSidebarOpen = this.ngRedux.getState().ui_isSidebarOpen;
+    return isSidebarOpen;
+  };
   @Output() onToggleSideView = new EventEmitter<boolean>();
-  isSideOpen: boolean = false;
   @ViewChild( 'headerTitle' ) headerTitle: ElementRef;
+  @HostBinding( 'class.is-searhOpen' ) isSearchOpen: boolean = false;
   
   constructor(
     private ngRedux: NgRedux<AppState>,
   ) { }
 
 
-  ngOnInit() {
-    this.ngRedux.subscribe(()=>{
-      const appState = this.ngRedux.getState();
-      switch( appState._currentAction ){
-        case actionList.GET_CURRENT_WEATHER :
-          this.currentWeather = Object.assign( appState.currentWeather, this.currentLocation );
-        break;
+  ngOnInit() {}
 
-      }
-    })
-
-    this.currentLocation = this.ngRedux.getState().chosenLocation;
-  }
-
-  ngAfterContentInit(){
-    const mainContainer = this.ngRedux.getState()._containers.mainContainer;
-    mainContainer &&  mainContainer.nativeElement.addEventListener('scroll', this.headerScrollEffect.bind( this, mainContainer.nativeElement ))
-  }
   toggleSidebarView(){
-    this.isSideOpen = ! this.isSideOpen;
-    this.ngRedux.dispatch( { type: actionList.UI__TOGGLE_SIDEBAR_VIEW, data: this.isSideOpen } );
+    this.ngRedux.dispatch( { type: actionList.UI__TOGGLE_SIDEBAR_VIEW, data: ! this.isSideOpen } );
   }
 
-  getAutoCompleteResults( query: LocationItem ){
-    this.currentLocation = query;
-    this.ngRedux.dispatch({
-      type: actionList.GET_SEARCH_QUERY,
-      data: this.currentLocation,
-    })
+  toggleMobileSearchView(){
+    this.isSearchOpen = ! this.isSearchOpen;
   }
-
-  headerScrollEffect( mainContainer ){
-    let mainContainerScrollPos = mainContainer.scrollTop;
-    const headerTitle = this.headerTitle.nativeElement;
-    if ( ! headerTitle ) return;
-    if( this.isMobile() ) {
-      const refHeight = headerTitle.querySelector('.c-header-title').offsetHeight;
-      const formula = mainContainerScrollPos <= refHeight ? mainContainerScrollPos : refHeight;
-      headerTitle.style.marginTop = - formula + 'px';
-      mainContainer.style.paddingBottom = formula + 'px';
-    } else {
-      headerTitle.style.marginTop = '';
-      mainContainer.tyle.paddingBottom = ';'
-    }
-  }
-  isMobile(): boolean {
-    return true;
-    //const menu = this.mobileMenu.nativeElement;
-    //return window.getComputedStyle( menu ).getPropertyValue('position') === 'absolute';
-  }
-
 
 }

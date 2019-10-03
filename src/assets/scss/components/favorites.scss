@@ -1,8 +1,19 @@
 @media ( max-width: $mq-mobile ){
     .c-favorites {
         grid-template-columns: auto;
-        > .t-linkBox {
+        grid-gap: 0;
+        margin: 0 running( -$pad-small );
+        > .t-linkBox, .t-linkBox-data {
             display: contents;
         }
+        .t-linkBox-frame {
+            padding: running($pad-small);
+            border-bottom: 1px solid $c1;
+            align-items: center;
+        }
+    }
+    .c-favorites-remove {
+        right: running($pad-small);
+        top: running($pad-small);
     }
 }

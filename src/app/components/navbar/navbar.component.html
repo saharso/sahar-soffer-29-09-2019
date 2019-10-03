@@ -6,12 +6,14 @@
         [link]="'/main'"
         [icon]="'home'"
         [label]="'Home'"
+        (click)="closeSidebar()"
       ></hwt-nav-item>
 
       <hwt-nav-item
         [link]="'/favorites'"
         [icon]="'heart'"
         [label]="'Favorites'"
+        (click)="closeSidebar()"
       ></hwt-nav-item>
 
     </hwt-nav-item-set>
@@ -45,12 +47,6 @@
 
     </hwt-nav-item-set>
       
-    <div #mobileMenu class="bg-grey-d c-mobileMenu" [ngClass]="{ 'is-open': toggleSettings }">
-      <hwt-settings
-        (onSelect)="toggleSettings = false"
-        *ngIf="toggleSettings"
-      ></hwt-settings>
-    </div>
   </div>
 
 </nav>

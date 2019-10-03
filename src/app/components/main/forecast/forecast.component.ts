@@ -10,7 +10,6 @@ export class ForecastComponent implements OnInit {
 
   @Input() keepFahrenheit: boolean;
   @Input() set foreCast( foreCast: ForeCast ){
-    console.log( foreCast )
     if ( ! foreCast ) return;
     this.foreCastList = foreCast.DailyForecasts;
   }

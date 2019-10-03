@@ -15,28 +15,14 @@ export class LayoutComponent implements OnInit {
   @HostBinding( 'class.is-darkMode' ) get isDarkMode(){
     return this.ngRedux.getState().ui_isDarkMode;
   }
-  isSideViewOpen: boolean;
+  get isSideViewOpen(): boolean {
+    return this.ngRedux.getState().ui_isSidebarOpen;
+  }
+  
   constructor(
     private ngRedux: NgRedux<AppState>,
   ){}
 
   ngOnInit(){}
-  
-  ngAfterContentInit(){
-    this.ngRedux.getState()._containers[ 'mainContainer' ] = this.mainContainer;
-
-    this.ngRedux.subscribe(()=>{
-      const appState = this.ngRedux.getState();
-      switch( appState._currentAction ){
-        case actionList.UI__TOGGLE_SIDEBAR_VIEW :
-          this.isSideViewOpen = appState.ui_isSidebarOpen;
-          console.log(this.isSideViewOpen)
-        break;
-      }
-    })
-
-  }
-
-
-
+    
 }

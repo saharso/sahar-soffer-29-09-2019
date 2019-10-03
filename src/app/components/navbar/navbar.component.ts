@@ -17,34 +17,14 @@ export class NavbarComponent implements OnInit {
     private ngRedux: NgRedux<AppState>
   ) { }
 
-  ngOnInit() {
-  }
-
-  ngAfterContentInit(){
-    this.setMobileMenuHeight();
-    window.addEventListener('resize',this.setMobileMenuHeight.bind( this ));
-  }
+  ngOnInit() {}
   
-  setMobileMenuHeight(){
-    const menu = this.mobileMenu.nativeElement;
-    if ( ! menu ) return;
-    if( this.isMobile() ) {
-      menu.style.height = document.body.clientHeight - menu.getBoundingClientRect().top + 'px';
-    } else {
-      menu.style.height = '';
-    }
-  }
-
-  isMobile(): boolean {
-    const menu = this.mobileMenu.nativeElement;
-    return window.getComputedStyle( menu ).getPropertyValue('position') === 'absolute';
-  }
-
   toggleDegUnit( degUnit: DegUnit ){
     this.ngRedux.dispatch({
       type: actionList.UI__SET_DEGREE_UNIT,
       data: degUnit,
     });
+    this.closeSidebar();
   }
   
   toggleDarkmode( isDarkMode: boolean ){
@@ -52,6 +32,14 @@ export class NavbarComponent implements OnInit {
       type: actionList.UI__TOGGLE_DARK_MODE,
       data: isDarkMode,
     });
+    this.closeSidebar();
+  }
+
+  closeSidebar(){
+    this.ngRedux.dispatch({
+      type: actionList.UI__TOGGLE_SIDEBAR_VIEW,
+      data: false,
+    })
   }
 
 }

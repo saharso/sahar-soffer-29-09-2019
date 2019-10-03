@@ -1,3 +1,4 @@
+
 .bg-grey-l {
     background-color: $c-grey-l;
     color: $c1;
@@ -31,11 +32,14 @@
 }
 .fs-30 {
     font-size: running(30);
+    @media(max-width: $mq-mobile ){
+        font-size: 1.35em;
+    }
 }
 .fs-40 {
     font-size: running(40);
     @media(max-width: $mq-mobile ){
-        font-size: running( 22 );
+        font-size: 1.44em;
     }
 }
 .fs-50 {
@@ -95,7 +99,7 @@
     }
 }
 %t-shadow, .t-shadow {
-    box-shadow: 0px 6px 8px 0px rgba( 0, 0, 0, 0.09 );
+    box-shadow: 0px 0px 8px 0px rgba( 0, 0, 0, 0.09 );
 }
 
 .t-button {
@@ -147,22 +151,21 @@
     border-radius: 50%;
     padding: running($pad-small);
 }
-.t-linkBox {
-    @extend  %t-shadow;
-    border-radius: running($rad);
-    overflow: hidden;
-    border-top: running(6) solid $c-btn;
-    padding: running($pad-small);
-    &-icon {
-        width: running( 100 );
-        height: running( 100 );
-        display: block;
-        box-shadow: $shadow-focus;
+a.t-linkBox {
+    &:hover {
+        color: inherit;
+        background-color: lighten($c-grey-m,24);
     }
+}
+.t-linkBox-icon {
+    width: running( 100 );
+    height: running( 100 );
+    flex-shrink: 0;
+    display: block;
+    box-shadow: $shadow-focus;
 }
 .t-nav-control {
     @extend %norm-a;
-    @extend %t-focus;
     position: relative;
     white-space: nowrap;
     transition: background-color 200ms ease-out;
@@ -173,8 +176,10 @@
     &:last-child  {
         border-right-color: transparent;
     }
-    &:hover {
-        background-color: $c-grey-l;
+    @media (min-width: $mq-mobile){
+        &:hover {
+            background-color: $c-grey-l;
+        }
     }
     &.is-active {
         color: $c-red;
@@ -200,4 +205,18 @@
 }
 .t-row--small {
     margin-bottom: running( $pad-small );
+}
+@media (min-width: $mq-mobile ){
+    .is-onMobile {
+        display: none;
+    }
+    .vw1 {
+        font-size: 1vw;
+    }
+    
+}
+@media (max-width: $mq-mobile ){
+    .t-mainTitle {
+        font-size: 1.6em;
+    }
 }

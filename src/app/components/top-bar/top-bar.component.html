@@ -1,25 +1,31 @@
-<header #headerTitle class="l-flex t-borderBottom c-topBar">
+<header class="l-flex t-borderBottom c-topBar">
 
-  <hwt-nav-item-set>
+  <div class="l-flex bg-white l-layer-up c-topBar-controlList">
     <hwt-nav-item
       class="c-topBar-mainMenu-control"
       [icon]="'bars'"
       (onClick)="toggleSidebarView()"
     >
     </hwt-nav-item>
-  </hwt-nav-item-set>
 
-  <div class="l-flex l-cell-spread-x t-yPad--small t-xPad--med">
+    <hwt-nav-item
+      class="c-topBar-mainMenu-control is-onMobile"
+      [icon]="'search'"
+      (onClick)="toggleMobileSearchView()"
+    >
+    </hwt-nav-item>
+  </div>
 
-    <div class="l-align-y l-cell-spread-x c-header-title">
+
+  <div class="l-flex l-cell-spread-x t-yPad--small t-xPad--med c-topBar-content">
+
+    <div class="l-align-y l-cell-spread c-header-title">
       <h1 class="norm-title fs-20">
         Herolo Weather Task
       </h1>
     </div>
-    <hwt-location-search
-      (onAutoCompleteQuery)="getAutoCompleteResults( $event )"
-      [defaultLocation]="currentLocation"
-    ></hwt-location-search>
+
+    <hwt-location-search></hwt-location-search>
 
   </div>
 

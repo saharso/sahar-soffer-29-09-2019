@@ -3,15 +3,15 @@
     Your Favorite weathers
   </h1>
   <div class="t-row--med"></div>
-  <nav class="norm-ul t-grid t-grid--3 c-favorites">
+  <nav class="norm-ul t-grid t-grid--3 c-favorites vw1">
 
     <a 
       *ngFor="let item of favoriteList"
       routerLink="/main/{{item.key}}/{{item.name}}"
-      class="l-block t-xPad--med t-yPad--med bg-grey-l t-shadow t-borderBottom"
+      class="l-block t-xPad--med t-yPad--med c-c1 t-shadow t-borderBottom t-linkBox"
     >
 
-      <div class="l-pos-relative l-align-bottom">
+      <div class="l-pos-relative l-align-bottom t-linkBox-frame">
 
         <hwt-icon class="t-radial bg-white t-linkBox-icon" [icon]="item.WeatherIcon" [alt]="item.WeatherText"></hwt-icon>
     
@@ -23,8 +23,8 @@
           <i class="fas fa-heart-broken"></i>
         </button>
         <div class="t-space--small"></div>
-        <div class="l-cell-spread">
-          <h2 class="norm-title l-cell-spread fs-20">
+        <div class="l-cell-spread t-linkBox-data">
+          <h2 class="norm-title l-cell-spread fs-30">
             {{ item.name }}
           </h2>
   

@@ -25,6 +25,10 @@
         .t-borderBottom {
             border-color: #fff;
         }
+        .c-forecast-list,
+        .c-favorites .t-linkBox-frame {
+            border-color: #fff;
+        }
     }
 }
 .c-main {
@@ -42,5 +46,15 @@
 .is-sideViewOpen {
     .c-main {
         transform: translateX( running( $navbar-width - $navbar-cubic ) );
+    }
+}
+@media ( max-width: $mq-mobile ){
+    .c-main {
+        padding: 0;
+        background: transparent;
+    }
+    .c-mainFrame {
+        padding: running($pad-small);
+        border-radius: 0;
     }
 }

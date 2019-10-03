@@ -15,7 +15,7 @@ const updateState = ( state: AppState, action: ActionMethod, update: any ) => {
             _currentAction: action.type,
         },
     );
-    console.groupCollapsed('%c State '+ action.type + ' updated at ' + new Date(), 'color: lightblue' )
+    console.groupCollapsed( '%c State '+ action.type + ' updated at ' + new Date(), 'color: lightblue' )
         console.log( stateUpdate );
     console.groupEnd();
 
@@ -35,10 +35,7 @@ export class AppState {
     serverRequest?: ServerRequest = new ServerRequest();
     locationSearch?: LocationItem[];
     iconUrl?: string = 'https://www.accuweather.com/images/weathericons/';
-    chosenLocation?: LocationItem = {
-        key: '215854',
-        name: 'Tel Aviv'
-    };
+    chosenLocation?: LocationItem;
     currentWeather?: CurrentWeather;
     foreCast?: ForeCast;
     favoriteAdded?: CurrentWeather[];
@@ -82,7 +79,7 @@ export const rootReducer = ( state: AppState, action: ActionMethod ) => {
                 locationSearch: action.data,
             };
         return updateState( state, action, update );
-        case actionList.GET_SEARCH_QUERY :
+        case actionList.CHOOSE_LOCATION :
             update = {
                 chosenLocation: action.data,
             };
