@@ -12,6 +12,9 @@
         .c-navbar-routeList .t-nav-control.is-active {
             background-color: darken($c-grey-d,10);
         }
+        .t-nav-control.is-active {
+            background-color: $c-blue;
+        }
         .bg-grey-l {
             background-color: darken($c-grey-d,10);
             color: #fff;

@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { MessageService } from 'primeng/api';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, catchError, take } from "rxjs/operators";
 import { LocationItem } from '../models/location.model';
 import { NgRedux } from '@angular-redux/store';
 import { AppState, actionList } from '../redux/store';
 import { ServerRequest } from '../models/server-request.model';
 import { CurrentWeather } from '../models/current-weather.model';
-import { fakeData } from '../../../assets/mockups/state.mockup.js';
-import { getLContext } from '@angular/core/src/render3/context_discovery';
-import { resolve, reject } from 'q';
-import { async } from '@angular/core/testing';
 
 
 @Injectable({
@@ -40,7 +36,7 @@ export class DataService {
       requestResult: 'loading'
     };
     this.dispatchServerRequest( requestResult );
-    const url = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete';
+    const url = 'https://dataservice.accuweather.com/locations/v1/cities/autocomplete';
     const params = new HttpParams()
       .set('q', query )
       .set('apikey', this.apiKey() );
@@ -79,7 +75,7 @@ export class DataService {
     };
     this.dispatchServerRequest( requestResult );
 
-    const url = 'http://dataservice.accuweather.com/currentconditions/v1/' + locationKey;
+    const url = 'https://dataservice.accuweather.com/currentconditions/v1/' + locationKey;
     const params = new HttpParams()
       .set('apikey', this.apiKey() );
 
@@ -110,7 +106,7 @@ export class DataService {
       requestResult: 'loading'
     };
     this.dispatchServerRequest( requestResult );
-    const url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + locationKey;
+    const url = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/' + locationKey;
     const params = new HttpParams()
       .set('apikey', this.apiKey() );
 
@@ -132,46 +128,45 @@ export class DataService {
     return data;
   }
 
-  async getGeoLocation(){
+  getGeoLocation(): Observable<any> {
 
-    let url = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + this.apiKey() + '&q=';
+    let url = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
     const requestResult: ServerRequest = {
       id: actionList.GET_FORECAST,
       requestResult: 'loading'
     };
 
-    const getPosition = new Promise(function (resolve, reject) {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-    } );
-
-    const _this = this;
-    async function getLocationFromApi ( url: string ) {
-
-      return fetch( url).then(
-        (d)=>{
-          return d.json();
-        },
-        (error) => { 
-          _this.handleError(error, 'your location', requestResult )}
-        ).then(
-          (d) =>{
-            const locationItem: LocationItem = {
-              key: d.Key,
-              name: d.LocalizedName,
-            };
-            _this.ngRedux.dispatch({
-              type: actionList.CHOOSE_LOCATION,
-              data: locationItem,
-            }) 
-          },
-        );
+    let response = new Observable();
+    const getPosition = (data)=>{
+      const pos = data.coords.latitude + ',' + data.coords.longitude;
+      const params = new HttpParams()
+        .set('apikey', this.apiKey() )
+        .set('q', pos );  
+      this.http.get( url ,{ params } ).subscribe(
+        (data)=>{
+          this.extractLocation(data)
+        }
+      );
+      return response;
+    
     }
 
-    await getPosition.then((data: Position)=>{
-      const latLon = data.coords.latitude + ',' + data.coords.longitude;
-      url += latLon;
-      return getLocationFromApi( url );
-    })
+    navigator.geolocation.getCurrentPosition( getPosition );
+  
+
+    return response;
+  
+  }
+
+  private extractLocation( data ){
+    this.ngRedux.dispatch({
+      type: actionList.CHOOSE_LOCATION,
+      data: {
+        key: data.Key,
+        name: data.LocalizedName,
+      },
+    });
+    return data;
 
   }
 

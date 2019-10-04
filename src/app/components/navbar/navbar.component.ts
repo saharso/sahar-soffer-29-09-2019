@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
       type: actionList.UI__TOGGLE_DARK_MODE,
       data: isDarkMode,
     });
+    localStorage.setItem( 'darkMode', isDarkMode ? '1' : '0' );
     this.closeSidebar();
   }
 

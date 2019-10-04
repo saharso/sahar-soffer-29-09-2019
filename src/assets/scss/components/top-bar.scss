@@ -1,4 +1,6 @@
 .c-topBar {
+    position: relative;
+    z-index: 9999;
     .t-navItemSet,
     .t-nav-control {
         height: 100%;
@@ -17,6 +19,9 @@
     }
 }
 @media ( max-width: $mq-mobile ){
+    .c-topBar {
+        box-shadow: $t-shadow;
+    }
     .c-topBar-content {
         padding-left: 0;
         padding-right: running($pad-small);

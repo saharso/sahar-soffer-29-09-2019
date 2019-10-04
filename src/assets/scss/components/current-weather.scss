@@ -38,7 +38,8 @@
 // forecast
 .c-forecast-list {
     display: grid;
-    border-bottom: 1px  solid $c1; 
+    background-color: $c-azure;
+    margin: 0 running(-$pad);
     grid-template-columns: repeat(5, 1fr);
 }
 .c-forecast-item-icon {

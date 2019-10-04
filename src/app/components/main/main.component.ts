@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
     const _currentWeather = this.ngRedux.getState().currentWeather;
     if( ! _currentWeather ) return null;
     _currentWeather.isFavorite = !! this.ngRedux.getState().favoriteList.find( e => e.key === _currentWeather.key );
+    Object.assign( _currentWeather, this.ngRedux.getState().chosenLocation );
     return _currentWeather;
   }
 
@@ -30,6 +31,7 @@ export class MainComponent implements OnInit {
   get loading(): string {
     const serverRequest = this.ngRedux.getState().serverRequest;
     if ( ! serverRequest ) return '';
+    if ( serverRequest.id !== actionList.GET_CURRENT_WEATHER && serverRequest.id !== actionList.GET_FORECAST ) return;
     return this.ngRedux.getState().serverRequest.requestResult;
   }
   

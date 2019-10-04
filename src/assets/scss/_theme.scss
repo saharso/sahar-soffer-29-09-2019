@@ -24,11 +24,18 @@
 .c-red {
     color: $c-red;
 }
+.c-blue {
+    color: $c-blue;
+}
 .c-c1 {
     color: $c1;
 }
+
 .fs-20 {
     font-size: running(20);
+}
+.fs-25 {
+    font-size: running(25);
 }
 .fs-30 {
     font-size: running(30);
@@ -98,8 +105,9 @@
         box-shadow: 0px 0px 5px 0px rgba($c-grey-d, 0.65);
     }
 }
+$t-shadow: 0px 0px 8px 0px rgba( 0, 0, 0, 0.09 );
 %t-shadow, .t-shadow {
-    box-shadow: 0px 0px 8px 0px rgba( 0, 0, 0, 0.09 );
+    box-shadow: $t-shadow;
 }
 
 .t-button {
@@ -172,7 +180,7 @@ a.t-linkBox {
     border-bottom: 1px solid $c-grey-l;
     margin-bottom: -1px;
     color: inherit;
-    color: $c1;
+    color: $c-blue;
     &:last-child  {
         border-right-color: transparent;
     }
@@ -182,7 +190,7 @@ a.t-linkBox {
         }
     }
     &.is-active {
-        color: $c-red;
+        background-color: $c-azure;
     }
     .t-space {
         min-width: running($navbar-cubic);

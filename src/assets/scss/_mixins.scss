@@ -71,11 +71,6 @@
      bottom: -99px;
      margin: auto;
  }
-%ff-open-sans {
-    //font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-family: 'Open Sans', Arial, sans-serif;
-
-}
 
 @mixin spin( $speed:1s) { 
     -webkit-animation:spin $speed linear infinite;

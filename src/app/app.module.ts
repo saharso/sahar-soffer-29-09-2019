@@ -25,6 +25,8 @@ import { NavItemComponent } from './components/_shared/nav-item/nav-item.compone
 import { NavItemSetComponent } from './components/_shared/nav-item-set/nav-item-set.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DegRangeComponent } from './components/_shared/deg-range/deg-range.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 const routes: Routes = [
   { 
     path: '',
@@ -81,6 +83,7 @@ const routes: Routes = [
   ],
   providers: [
     MessageService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })

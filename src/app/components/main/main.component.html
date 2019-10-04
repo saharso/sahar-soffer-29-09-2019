@@ -18,7 +18,7 @@
     </p>
 </ng-container>
 
-<ng-container *ngIf="loading === 'success'">
+<ng-container *ngIf="! loading || loading === 'success'">
     <hwt-current-weather
         *ngIf="currentWeather"
         [currentWeather]="currentWeather"
