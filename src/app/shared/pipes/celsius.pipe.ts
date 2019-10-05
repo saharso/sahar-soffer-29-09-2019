@@ -1,12 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { AppState, actionList } from '../redux/store';
+import { DegUnit } from '../models/degUnit.model';
 
 @Pipe({
-  name: 'celsius'
+  name: 'celsiusFarenHeitToggler'
 })
-export class CelsiusPipe implements PipeTransform {
+export class CelsiusFarenheitPipe implements PipeTransform {
 
-  transform( fahrenheitDegree: number, returnToFahrenheit: boolean = false ): any {
-    if ( returnToFahrenheit ) return fahrenheitDegree;
+  constructor(
+    private ngRedux: NgRedux<AppState>,
+  ){}
+
+  transform( fahrenheitDegree: number, toggler: DegUnit ): any {
+    if ( toggler === 'fahrenheit' ) return fahrenheitDegree;
     else return Math.round( (5/9) * (fahrenheitDegree - 32) );
   }
 

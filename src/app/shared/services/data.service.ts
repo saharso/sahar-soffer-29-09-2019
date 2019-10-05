@@ -20,13 +20,24 @@ export class DataService {
     private http: HttpClient,
     private ngRedux: NgRedux<AppState>,
   ) { 
-    this.getGeoLocation();
+    
   }
   private apiKey(){
-    //return 'jhA7A51oWfnBgX2r0Q8Fs9vA2X1MWv1C';
+    return 'jhA7A51oWfnBgX2r0Q8Fs9vA2X1MWv1C';
     //return 'KbYovIoDjUtB9Mzpe3JLKCdreACHNGYE';
-    return 'QArD9PBP0efjxevWZVbDe5LJzAfVrev3';
-    return '';
+    //return 'QArD9PBP0efjxevWZVbDe5LJzAfVrev3';
+  }
+
+  setDefaultSearch(){
+    if( this.ngRedux.getState().chosenLocation ) return;
+    const defaultValue: LocationItem = {
+      key: '215854',
+      name: 'Tel Aviv',
+    }
+    this.ngRedux.dispatch({
+      type: actionList.CHOOSE_LOCATION,
+      data: defaultValue,
+    })
   }
 
   getAutoCompleteData( query: string ): Observable<any> {
@@ -128,11 +139,11 @@ export class DataService {
     return data;
   }
 
-  getGeoLocation(): Observable<any> {
+  getGeoLocation(): void {
 
     let url = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
     const requestResult: ServerRequest = {
-      id: actionList.GET_FORECAST,
+      id: actionList.GET_GEO_LOCATION,
       requestResult: 'loading'
     };
 
@@ -144,21 +155,24 @@ export class DataService {
         .set('q', pos );  
       this.http.get( url ,{ params } ).subscribe(
         (data)=>{
-          this.extractLocation(data)
+          this.extractLocation( data, requestResult )
+        },
+        (error)=>{
+          this.handleError( error );
         }
       );
       return response;
     
     }
+    (function (){
+      navigator.geolocation.getCurrentPosition((d)=>d);
+    })()
 
     navigator.geolocation.getCurrentPosition( getPosition );
   
-
-    return response;
-  
   }
 
-  private extractLocation( data ){
+  private extractLocation( data: any, requestResult: ServerRequest ){
     this.ngRedux.dispatch({
       type: actionList.CHOOSE_LOCATION,
       data: {
@@ -166,6 +180,8 @@ export class DataService {
         name: data.LocalizedName,
       },
     });
+    requestResult.requestResult = 'success';
+    this.dispatchServerRequest( requestResult );
     return data;
 
   }
@@ -196,9 +212,12 @@ export class DataService {
     });
   }
 
-  requestResults( action: string ): ServerRequest {
-
-    return undefined;
+  setCurrentWeather(){
+    const currentWeather = this.ngRedux.getState().currentWeather;
+    if( ! currentWeather ) return null;
+    currentWeather.isFavorite = !! this.ngRedux.getState().favoriteList.find( e => e.key === currentWeather.key );
+    Object.assign( currentWeather, this.ngRedux.getState().chosenLocation );
+    return currentWeather;
   }
 
 }

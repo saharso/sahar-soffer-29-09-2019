@@ -12,8 +12,8 @@
   <div class="l-align-bottom l-flex-wrap l-cell-spread c-currentWeather-data">
     
     <div class="c-blue l-align-top c-currentWeather-temperature">
-      {{ currentWeather.Temperature.Imperial.Value | celsius: keepFahrenheit }}
-      <span class="c-currentWeather-temperature-unitType">&deg;{{ keepFahrenheit ? 'F': 'C' }}</span>
+      {{ currentWeather.Temperature.Imperial.Value | celsiusFarenHeitToggler : degUnit }}
+      <span class="c-currentWeather-temperature-unitType">&deg;{{ degUnit === 'fahrenheit' ? 'F': 'C' }}</span>
     </div>
 
     <div class="l-cell-spread-x l-nowrap t-xPad--med c-currentWeather-degrees">

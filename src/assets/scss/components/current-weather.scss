@@ -38,7 +38,7 @@
 // forecast
 .c-forecast-list {
     display: grid;
-    background-color: $c-azure;
+    background-color: rgba( $c-azure, 0.4 );
     margin: 0 running(-$pad);
     grid-template-columns: repeat(5, 1fr);
 }

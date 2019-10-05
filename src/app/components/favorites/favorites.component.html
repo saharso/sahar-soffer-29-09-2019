@@ -1,4 +1,4 @@
-<article>
+<article *ngIf="favoriteList && favoriteList.length">
   <h1 class="t-mainTitle">
     Your Favorite weathers
   </h1>
@@ -19,6 +19,7 @@
           (click)="removeFromFavorites( $event, item )"
           class="c-red l-pos-abs-topRight c-favorites-remove"
           pTooltip="Remover from favorites"
+          tooltipPosition="bottom"
         >
           <i class="fas fa-heart-broken"></i>
         </button>
@@ -41,3 +42,16 @@
   </nav> 
 </article>
 
+<ng-container *ngIf="favoriteList && ! favoriteList.length">
+
+  <h1 class="t-mainTitle">
+    <i class="far fa-surprise"></i>
+    No favorites yet?
+  </h1>
+  <div class="t-row--med"></div>
+  <p class="fs-20">
+    <i class="far fa-snowflake"></i>
+    Start here by adding some special snowflakes:
+  </p>
+  <hwt-location-search class="l-ib"></hwt-location-search>
+</ng-container>

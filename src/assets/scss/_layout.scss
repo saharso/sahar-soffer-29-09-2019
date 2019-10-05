@@ -115,15 +115,16 @@
 .l-block {
     display: block;
 }
-.l-ib {
+.l-ib, %l-ib {
     display: inline-block;
+    max-width: 100%;
 }
 .l-ibm {
-    display: inline-block;
+    @extend %l-ib;
     vertical-align: middle;
 }
 .l-ibt {
-    display: inline-block;
+    @extend %l-ib;
     vertical-align: top;
 }
 .l-ltr {
@@ -173,6 +174,7 @@ table.is-layout-fixed , .is-layout-fixed table {
 .l-overflow-auto {
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: auto;
 }
 .l-contents {
     display: contents;

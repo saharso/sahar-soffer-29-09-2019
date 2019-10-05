@@ -17,11 +17,7 @@ import { FavoritesService } from 'src/app/shared/services/favorites.service';
 export class MainComponent implements OnInit {
   
   get currentWeather(): CurrentWeather {
-    const _currentWeather = this.ngRedux.getState().currentWeather;
-    if( ! _currentWeather ) return null;
-    _currentWeather.isFavorite = !! this.ngRedux.getState().favoriteList.find( e => e.key === _currentWeather.key );
-    Object.assign( _currentWeather, this.ngRedux.getState().chosenLocation );
-    return _currentWeather;
+    return this.dataService.setCurrentWeather();
   }
 
   get foreCast(): ForeCast {
@@ -50,6 +46,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
 
+    this.dataService.setDefaultSearch();
+    this.dataService.setCurrentWeather();
     this.getDataByRoute();
     this.getWeateherDataFromServer();
 

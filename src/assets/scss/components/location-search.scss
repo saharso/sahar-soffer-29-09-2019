@@ -1,3 +1,6 @@
+.c-autoComplete {
+    margin: running( $pad-med ) auto;
+}
 .c-autoComplete-wrap {
     max-width: 100%;
     width: running( 420 );
@@ -5,7 +8,6 @@
     border: 1px solid;
     border-radius: 5000px;
     position: relative;
-    margin: running( $pad-med ) auto;
     .ui-autocomplete {
         display: inline;
         padding: 0;
@@ -36,4 +38,8 @@
     height: 100%;
     width: running( $pad );
     text-align: center;
+}
+.c-autoComplete-setYourLocation {
+    width: running( $pad );
+    height: running( $pad );
 }

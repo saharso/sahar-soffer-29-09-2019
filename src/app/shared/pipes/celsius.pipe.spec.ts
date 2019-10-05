@@ -1,8 +1,8 @@
-import { CelsiusPipe } from './celsius.pipe';
+import { CelsiusFarenheitPipe } from './celsius.pipe';
 
-describe('CelsiusPipe', () => {
+describe('CelsiusFarenheitPipe', () => {
   it('create an instance', () => {
-    const pipe = new CelsiusPipe();
+    const pipe = new CelsiusFarenheitPipe();
     expect(pipe).toBeTruthy();
   });
 });

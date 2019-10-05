@@ -8,7 +8,6 @@ import { ForeCast, DailyForecast } from 'src/app/shared/models/forecast.model';
 })
 export class ForecastComponent implements OnInit {
 
-  @Input() keepFahrenheit: boolean;
   @Input() set foreCast( foreCast: ForeCast ){
     if ( ! foreCast ) return;
     this.foreCastList = foreCast.DailyForecasts;

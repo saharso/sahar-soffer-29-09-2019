@@ -2,11 +2,11 @@
   <i class="fas fa-thermometer-three-quarters fs-20"></i>
   &nbsp;
   <div class="l-cell-spread l-nowrap">
-    {{ minValue | celsius : keepFahrenheit }}
+    {{ minValue | celsiusFarenHeitToggler : degUnit }}
     <ng-container *ngIf="maxValue">
       -
-      {{ maxValue | celsius : keepFahrenheit }}
+      {{ maxValue | celsiusFarenHeitToggler : degUnit }}
     </ng-container>&deg;
-    {{ keepFahrenheit ? 'F' : 'C' }}
+    {{ degUnit === 'fahrenheit' ? 'F' : 'C' }}
   </div>
 </div>

@@ -14,10 +14,15 @@ import { Router } from '@angular/router';
 export class LocationSearchComponent implements OnInit {
   
   defaultLocation: LocationItem;
-  @Output() onAutoCompleteQuery = new EventEmitter<LocationItem>();
+  //@Output() onAutoCompleteQuery = new EventEmitter<LocationItem>();
   autoCompleteQuery: LocationItem;  
   cityList: LocationItem[];
   requestResult: RequestResult;
+  get loading(): boolean {
+    const serverStatus = this.ngRedux.getState().serverRequest;
+    console.log(serverStatus);
+    return serverStatus.id === actionList.GET_GEO_LOCATION ? serverStatus.requestResult === 'loading' : false
+  }
 
   constructor(
     private dataService: DataService,
@@ -26,6 +31,7 @@ export class LocationSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.defaultLocation = this.ngRedux.getState().chosenLocation;
     this.ngRedux.subscribe(()=>{
       const appState = this.ngRedux.getState();
       if( appState._currentAction === actionList.CHOOSE_LOCATION ){
@@ -41,13 +47,16 @@ export class LocationSearchComponent implements OnInit {
 
 
   onAutoCompleteSearch( event ){
-    // call auto complte service
     this.dataService.getAutoCompleteData( event.query ).subscribe(
       ( data )=>{
         this.cityList = data;
       } 
     )
+  }
 
+  setYourLocation( event: MouseEvent ){
+    event.stopPropagation();
+    this.dataService.getGeoLocation();
   }
 
 }

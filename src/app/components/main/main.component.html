@@ -23,13 +23,12 @@
         *ngIf="currentWeather"
         [currentWeather]="currentWeather"
         [currentLocation]="currentLocation"
-        [keepFahrenheit]="keepFahrenheit"
         (onAddToFavorites)="addToFavorites( $event )"
         (onRemoveFromFavorites)="removeFromFavorites( $event )"
     ></hwt-current-weather>
 
     <hwt-forecast
         [foreCast]="foreCast"
-        [keepFahrenheit]="keepFahrenheit"
     ></hwt-forecast>
+
 </ng-container>

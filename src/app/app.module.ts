@@ -18,7 +18,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { LocationSearchComponent } from './components/location-search/location-search.component';
 import { CurrentWeatherComponent } from './components/main/current-weather/current-weather.component';
 import { ForecastComponent } from './components/main/forecast/forecast.component';
-import { CelsiusPipe } from './shared/pipes/celsius.pipe';
+import { CelsiusFarenheitPipe } from './shared/pipes/celsius.pipe';
 import { IconComponent } from './components/_shared/icon/icon.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { NavItemComponent } from './components/_shared/nav-item/nav-item.component';
@@ -61,7 +61,7 @@ const routes: Routes = [
     LocationSearchComponent,
     CurrentWeatherComponent,
     ForecastComponent,
-    CelsiusPipe,
+    CelsiusFarenheitPipe,
     IconComponent,
     TopBarComponent,
     NavItemComponent,

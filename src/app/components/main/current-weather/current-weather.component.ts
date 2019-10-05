@@ -3,6 +3,7 @@ import { CurrentWeather } from 'src/app/shared/models/current-weather.model';
 import { LocationItem } from 'src/app/shared/models/location.model';
 import { NgRedux } from '@angular-redux/store';
 import { AppState, actionList } from 'src/app/shared/redux/store';
+import { DegUnit } from 'src/app/shared/models/degUnit.model';
 
 @Component({
   selector: 'hwt-current-weather',
@@ -12,13 +13,14 @@ import { AppState, actionList } from 'src/app/shared/redux/store';
 export class CurrentWeatherComponent implements OnInit {
 
   @Input() currentWeather: CurrentWeather;
-  @Input() keepFahrenheit: boolean
   @Input() currentLocation: LocationItem;
   @Output() onAddToFavorites = new EventEmitter<CurrentWeather>();
   @Output() onRemoveFromFavorites = new EventEmitter<CurrentWeather>();
-
-  
   iconUrl: string;
+  get degUnit(): DegUnit {
+    return this.ngRedux.getState().ui_degreeUnits;
+  }
+
 
   constructor(
     private ngRedux: NgRedux<AppState>,
